@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Day1A {
+public class Day1 {
     static int partA(Scanner fileReader) {
         int numIncreases = 0;
         int previousNumber = fileReader.nextInt();
@@ -40,7 +40,7 @@ public class Day1A {
     public static void main(String[] args) {
         try {
             String dataPath = "Day1/day1_data.txt";
-            String examplePath = "Day1/day1_example.txt";
+            //String examplePath = "Day1/day1_example.txt";
             File inputData = new File(dataPath);
             //File inputData = new File(examplePath);
             Scanner fileReaderA = new Scanner(inputData);
