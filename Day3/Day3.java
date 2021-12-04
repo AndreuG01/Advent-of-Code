@@ -107,7 +107,7 @@ public class Day3 {
             int currentTotalLines = tmpNumLines;
             zeroCount = countZeroFreq(co2List); // As before, every time that we remove an element, we have to recompute the new frequencies
             for (int i = 0; i < co2List.size(); i++) {
-                if (zeroCount[idxToCompare] < currentTotalLines / 2) {
+                if (zeroCount[idxToCompare] <= currentTotalLines / 2) {
                     if (Character.compare('1', co2List.get(i).charAt(idxToCompare)) == 0) {
                         co2List.remove(i);
                         i -= 1;
@@ -115,12 +115,6 @@ public class Day3 {
                     }
                 } else if (zeroCount[idxToCompare] > currentTotalLines / 2) {
                     if (Character.compare('0', co2List.get(i).charAt(idxToCompare)) == 0) {
-                        co2List.remove(i);
-                        i -= 1;
-                        tmpNumLines -= 1;
-                    }
-                } else {
-                    if (Character.compare('1', co2List.get(i).charAt(idxToCompare)) == 0) {
                         co2List.remove(i);
                         i -= 1;
                         tmpNumLines -= 1;
