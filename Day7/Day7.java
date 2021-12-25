@@ -26,24 +26,41 @@ public class Day7 {
     }
 
     static int summatory(int number) {
-        int result = number;
-        for (int i = 0; i < number; i++) {
-            result += i;
+        return (number * (number + 1)) / 2;
+    }
+
+    static int minCost(int[] array) {
+        int minNumber = array[0];
+        for (int number : array) {
+            if (number < minNumber) {
+                minNumber = number;
+            }
         }
 
-        return result;
+        return minNumber;
     }
 
     static int partB(Scanner fileReader) {
-        return 0;
+        int[] numbers = strArrToInt(fileReader.nextLine().split(","));
+        int[] costs = new int[numbers.length];
+        
+        for (int i = 0; i < numbers.length; i++) {
+            int cost = 0;
+            for (int j = 0; j < numbers.length; j++) {
+                cost += summatory(Math.abs(i - numbers[j]));
+            }
+            costs[i] = cost;
+        }
+
+        return minCost(costs);
     }
 
     public static void main(String[] args) {
         try {
             String dataPath = "Day7/day7_data.txt";
-            String examplePath = "Day7/day7_example.txt";
-            Scanner fileReaderA = new Scanner(new File(examplePath));
-            Scanner fileReaderB = new Scanner(new File(examplePath));
+            //String examplePath = "Day7/day7_example.txt";
+            Scanner fileReaderA = new Scanner(new File(dataPath));
+            Scanner fileReaderB = new Scanner(new File(dataPath));
             
             
             // Data
