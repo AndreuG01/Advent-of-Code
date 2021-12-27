@@ -20,10 +20,6 @@ class Point {
 }
 
 public class Day9 {
-
-    static boolean pointIsLow(int point, int top, int down, int right, int left) {
-        return false;
-    }
     
     static int partA(Scanner fileReader) {
         List<Integer> lowPoints = new ArrayList<Integer>(); // List where all the low points will be stored
