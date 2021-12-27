@@ -10,8 +10,6 @@ public class Day8 {
     public static final int LENGTH7 = 3;
     public static final int LENGTH8 = 7;
 
-
-
     static int partA(Scanner fileReader) {
         int counter = 0;
         while (fileReader.hasNext()) {
@@ -110,7 +108,6 @@ public class Day8 {
     }
 
     static int partB(Scanner fileReader) {
-        // Initializing the map with the numbers
         int totalResult = 0;
         while (fileReader.hasNextLine()) {
             String[] inputOutput = fileReader.nextLine().split("\\|");
