@@ -37,7 +37,8 @@ for line in file_content.splitlines():
             
             if num_balls > max_balls[color]:
                 invalid_games.append(game_id)
-                # Could add a break but should be commented for part 1 and to 2 be solved in the same run
+                # Could add a break to make part 1 more efficient, but should be removed for part 1 and to 2 be solved in the same run
+                # break
     
     
     part_2_res += max(blues) * max(greens) * max(reds)
