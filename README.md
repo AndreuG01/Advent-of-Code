@@ -11,3 +11,7 @@ To obtain the solutions to your problem of day `x`, replace the data inside `day
 ## 2022
 
 This year's solutions have been developed using CPP. To obtain the solutions to your problem of day `x`, go into the folder `2022/Dayx` and change the `data.txt` for your puzzle input and the `example.txt` by the example that Advent of Code provides to us.
+
+## 2023
+
+The chosen language for 2023 has been Python. To obtain the solutions to your problem of day `x`, go into the folder `2023/Dayx` and change the `data.txt` for your puzzle input and the `example.txt` by the example that Advent of Code provides to us.
