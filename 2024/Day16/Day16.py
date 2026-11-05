@@ -72,3 +72,41 @@ def plot_path(maze, path):
 plot_path(file_content, part_1_path)
 
 print(f"Part 1 res: {part_1_res}")
+
+# Part 2: the search above only remembers one path per tile, so to find every
+# tile on any best path search over (tile, facing) states instead. A state is
+# on a best path when the cheapest way from S to it plus the cheapest way from
+# it to E adds up to the best score.
+def state_costs(sources: list[tuple[tuple[int, int], tuple[int, int]]], backwards: bool):
+    costs = {}
+    queue = [(0, pos, direction) for pos, direction in sources]
+    heapq.heapify(queue)
+    while queue:
+        score, pos, direction = heapq.heappop(queue)
+        if (pos, direction) in costs:
+            continue
+        costs[(pos, direction)] = score
+
+        # Moving one step in the facing direction (or back against it when
+        # searching from E), or turning 90 degrees on the spot
+        step = -1 if backwards else 1
+        nx, ny = pos[0] + step * direction[0], pos[1] + step * direction[1]
+        if file_content[nx][ny] != "#":
+            heapq.heappush(queue, (score + 1, (nx, ny), direction))
+        dx, dy = direction
+        for turned in [(dy, -dx), (-dy, dx)]:
+            heapq.heappush(queue, (score + 1000, pos, turned))
+    return costs
+
+
+from_start = state_costs([(start_pos, (0, 1))], backwards=False)
+from_end = state_costs([(end_pos, direction) for direction in directions], backwards=True)
+best_score = min(from_start.get((end_pos, direction), float("inf")) for direction in directions)
+
+best_tiles = {
+    pos for (pos, direction), score in from_start.items()
+    if score + from_end.get((pos, direction), float("inf")) == best_score
+}
+
+part_2_res = len(best_tiles)
+print(f"Part 2 res: {part_2_res}")

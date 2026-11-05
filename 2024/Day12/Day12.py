@@ -46,6 +46,25 @@ def get_perimeter(points):
     return sum([4 - val for val in list(neighbors.values())])
 
 
+def get_sides(points):
+    # A polygon has as many sides as corners, so count the corners of every
+    # cell. Looking at two perpendicular neighbours (and the cell diagonal to
+    # both): if neither is in the region it is an outer corner, and if both
+    # are but the diagonal isn't it is an inner corner.
+    points = set(points)
+    corners = 0
+    for x, y in points:
+        for dx, dy in [(-1, -1), (-1, 1), (1, -1), (1, 1)]:
+            side_a = (x + dx, y) in points
+            side_b = (x, y + dy) in points
+            diagonal = (x + dx, y + dy) in points
+            if not side_a and not side_b:
+                corners += 1
+            elif side_a and side_b and not diagonal:
+                corners += 1
+    return corners
+
+
 def dfs(x, y, plant_type, visited, rows, cols, grid):
         stack = [(x, y)]
         region = []
@@ -94,5 +113,7 @@ for type, all_reg in regions.items():
         # print(reg)
         print(f"{type}: {len(reg)} * {get_perimeter(reg)} = {len(reg) * get_perimeter(reg)}")
         part_1_res += len(reg) * get_perimeter(reg)
+        part_2_res += len(reg) * get_sides(reg)
 
 print(f"Part 1 res: {part_1_res}")
+print(f"Part 2 res: {part_2_res}")
